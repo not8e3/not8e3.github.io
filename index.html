@@ -1,10 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<title>Agenda MSI</title>
-	</head>
-	<body>
-        <h1>Oi mundo</h1>
-	</body>
 <head>
+<title>Agenda MSI</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width"/>
+<style>
+* {font-family: Arial}
+body {
+text-align: center;
+}
+table {
+display: inline-block;
+border-collapse: collapse;
+}
+th {background: black; color: white; min-width: 100px}
+th, td {padding: 5px}
+</style>
+<script>
+var meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+var diasSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+var componentes = [{"id": 0, "nome": "Eletricidade Básica", "professor": "Rodrigo Pereira"},
+	{"id": 1, "nome": "Matemática Aplicada", "professor": "Douglas Enison"},
+{"id": 2, "nome": "Arquitetura de Computadores", "professor": "Dyego Henrique"},
+{"id": 3, "nome": "Sistemas Operacionais", "professor": "Alcides Andrade"},
+{"id": 4, "nome": "Informática Básica", "professor": "Rodrigo Pereira"},
+{"id": 5, "nome": "Inglês Aplicado a Informática", "professor": "Denise Mendes"},
+{"id": 6, "nome": "Português Instrumental", "professor": "Arlene Cantuário"},
+];
+var aulas = [
+	{"data": "08/10/2024", "horario": "", "componente": 2, "resumo": "Assistiu-se, parcialmente, ao Filme \"O Jogo da Imitação\"."},
+	{"data": "08/10/2024", "horario": "", "componente": 3, "resumo": "Aula interativa, Fake ou Fato."},
+];
+function criarTabelaMes(mes, ano, html) {
+	var ultimoDia = new Date(ano, mes-1, 0).getDate();
+	var diaSemanaPrimeiroDia = new Date(ano, mes-1, 1).getDay();
+	var tabela = document.createElement("table");
+	tabela.setAttribute("border", 1);
+	var tr = document.createElement("tr");
+	var th = document.createElement("th");
+	th.setAttribute("colspan", 7);
+	th.innerHTML = meses[mes - 1].toUpperCase();
+	tr.appendChild(th);
+	tabela.appendChild(tr);
+	tr = document.createElement("tr");
+	var td;
+	for (var i = 0; i < 7; i++) {
+		td = document.createElement("th");
+		td.innerHTML = diasSemana[i];
+		tr.appendChild(td);
+	}
+	tabela.appendChild(tr);
+	tr = document.createElement(tr);
+	for (var i = 0; i < diaSemanaPrimeiroDia; i++) {
+		td = document.createElement("td");
+		tr.appendChild(td);
+	}
+	if (diaSemanaPrimeiroDia == 6 || diaSemanaPrimeiroDia == 0) {
+		tabela.appendChild(tr);
+	}
+	for (var d = 1; d <= ultimoDia + diaSemanaPrimeiroDia; d++) {
+		
+	}
+	html.appendChild(tabela);
+}
+window.onload = function() {
+	var calendario = document.getElementById("calendario");
+	criarTabelaMes(10, 2024, calendario);
+}
+</script>
+</head>
+<body>
+	<h1>AGENDA MSI</h1>
+	<div id="calendario"></div>
+</body>
 </html>
